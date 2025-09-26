@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="md_theme_dark_background">#1C1B1F</color>
+    <color name="md_theme_dark_error">#FFB4AB</color>
+    <color name="md_theme_dark_errorContainer">#93000A</color>
+    <color name="md_theme_dark_onBackground">#E6E1E5</color>
+    <color name="md_theme_dark_onError">#690005</color>
+    <color name="md_theme_dark_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_dark_onPrimary">#381E72</color>
+    <color name="md_theme_dark_onPrimaryContainer">#EADDFF</color>
+    <color name="md_theme_dark_onSecondary">#332D41</color>
+    <color name="md_theme_dark_onSecondaryContainer">#E8DEF8</color>
+    <color name="md_theme_dark_onSurface">#E6E1E5</color>
+    <color name="md_theme_dark_onSurfaceVariant">#CAC4D0</color>
+    <color name="md_theme_dark_onTertiary">#492532</color>
+    <color name="md_theme_dark_onTertiaryContainer">#FFD8E4</color>
+    <color name="md_theme_dark_outline">#938F99</color>
+    <color name="md_theme_dark_outlineVariant">#49454F</color>
+    <color name="md_theme_dark_primary">#D0BCFF</color>
+    <color name="md_theme_dark_primaryContainer">#4F378B</color>
+    <color name="md_theme_dark_secondary">#CCC2DC</color>
+    <color name="md_theme_dark_secondaryContainer">#4A4458</color>
+    <color name="md_theme_dark_surface">#1C1B1F</color>
+    <color name="md_theme_dark_surfaceVariant">#49454F</color>
+    <color name="md_theme_dark_tertiary">#EFB8C8</color>
+    <color name="md_theme_dark_tertiaryContainer">#633B48</color>
+    <color name="md_theme_light_background">#FFFBFE</color>
+    <color name="md_theme_light_error">#BA1A1A</color>
+    <color name="md_theme_light_errorContainer">#FFDAD6</color>
+    <color name="md_theme_light_onBackground">#1C1B1F</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+    <color name="md_theme_light_onErrorContainer">#410002</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_onPrimaryContainer">#21005D</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_onSecondaryContainer">#1D192B</color>
+    <color name="md_theme_light_onSurface">#1C1B1F</color>
+    <color name="md_theme_light_onSurfaceVariant">#49454F</color>
+    <color name="md_theme_light_onTertiary">#FFFFFF</color>
+    <color name="md_theme_light_onTertiaryContainer">#31111D</color>
+    <color name="md_theme_light_outline">#79747E</color>
+    <color name="md_theme_light_outlineVariant">#CAC4D0</color>
+    <color name="md_theme_light_primary">#6750A4</color>
+    <color name="md_theme_light_primaryContainer">#EADDFF</color>
+    <color name="md_theme_light_secondary">#625B71</color>
+    <color name="md_theme_light_secondaryContainer">#E8DEF8</color>
+    <color name="md_theme_light_surface">#FFFBFE</color>
+    <color name="md_theme_light_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_light_tertiary">#7D5260</color>
+    <color name="md_theme_light_tertiaryContainer">#FFD8E4</color>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="app_name">Android AI</string>
+    <string name="back">Back</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="category_chatbots">Chatbots</string>
+    <string name="category_coding">Coding</string>
+    <string name="category_image">Image</string>
+    <string name="category_music">Music</string>
+    <string name="category_productivity">Productivity</string>
+    <string name="category_writing">Writing</string>
+    <string name="copy_link">Copy Link</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="favorites">Favorites</string>
+    <string name="forward">Forward</string>
+    <string name="home">Home</string>
+    <string name="homepage">Homepage</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="refresh">Refresh</string>
+    <string name="remove_bookmark">Remove Bookmark</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="search_hint">Search AI tools or web…</string>
+    <string name="settings">Settings</string>
+    <string name="share">Share</string>
+    <string name="system_theme">Follow System</string>
+    <style name="Theme.AndroidAi" parent="Theme.AppCompat.Light.NoActionBar">
+        
+        <item name="colorPrimary">#6750A4</item>
+        <item name="colorPrimaryDark">#4F378B</item>
+        <item name="colorAccent">#D0BCFF</item>
+        
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" ns1:targetApi="m">true</item>
+    </style>
+</resources>

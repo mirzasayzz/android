@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android AI</string>
+    <string name="homepage">Homepage</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="search_hint">Search AI tools or web…</string>
+    <string name="category_chatbots">Chatbots</string>
+    <string name="category_writing">Writing</string>
+    <string name="category_coding">Coding</string>
+    <string name="category_image">Image</string>
+    <string name="category_music">Music</string>
+    <string name="category_productivity">Productivity</string>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="remove_bookmark">Remove Bookmark</string>
+    <string name="share">Share</string>
+    <string name="copy_link">Copy Link</string>
+    <string name="open_in_browser">Open in Browser</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="system_theme">Follow System</string>
+    <string name="back">Back</string>
+    <string name="forward">Forward</string>
+    <string name="refresh">Refresh</string>
+    <string name="home">Home</string>
+</resources> 
