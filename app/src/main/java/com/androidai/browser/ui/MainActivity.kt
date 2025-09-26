@@ -6,21 +6,25 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.androidai.browser.data.AiLinksData
 import com.androidai.browser.ui.theme.AndroidAiTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,151 +37,139 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        AndroidAiApp()
+                        PremiumSwipeChat()
                     }
                 }
             }
         } catch (e: Exception) {
             Log.e("MainActivity", "Error in onCreate: ${e.message}", e)
-            // Fallback UI or finish activity
             finish()
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun AndroidAiApp() {
+fun PremiumSwipeChat() {
     val context = LocalContext.current
-    val aiLinks = remember { 
+    val chatModels = remember {
         try {
-            AiLinksData.getDefaultLinks()
+            AiLinksData.getDefaultLinks().filter { it.category == "Chatbots" }
         } catch (e: Exception) {
-            Log.e("AndroidAiApp", "Error loading AI links: ${e.message}", e)
+            Log.e("PremiumSwipeChat", "Error loading links: ${e.message}", e)
             emptyList()
         }
     }
-    
+
+    val pagerState = rememberPagerState(pageCount = { chatModels.size })
+    val coroutineScope = rememberCoroutineScope()
+
+    val headerGradient = Brush.verticalGradient(
+        colors = listOf(
+            MaterialTheme.colorScheme.surfaceVariant,
+            MaterialTheme.colorScheme.surface.copy(alpha = 0.0f)
+        )
+    )
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        "Android AI Browser",
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            )
-        }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            item {
-                Text(
-                    text = "🤖 AI Tools Collection",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(
-                    text = "Tap any AI tool to open it",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-            }
-            
-            if (aiLinks.isNotEmpty()) {
-                items(aiLinks.groupBy { it.category }.toList()) { (category, links) ->
-                    CategorySection(
-                        category = category,
-                        links = links,
-                        onLinkClick = { url ->
-                            try {
-                                val intent = Intent(context, WebViewActivity::class.java).apply {
-                                    putExtra("url", url)
-                                }
-                                context.startActivity(intent)
-                            } catch (e: Exception) {
-                                Log.e("AndroidAiApp", "Error starting WebViewActivity: ${e.message}", e)
-                            }
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Surface(tonalElevation = 4.dp) {
+                    TopAppBar(
+                        title = {
+                            Text(
+                                "Android AI",
+                                style = MaterialTheme.typography.headlineSmall,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                     )
                 }
-            } else {
-                item {
-                    Text(
-                        text = "No AI tools available. Please check your internet connection.",
-                        style = MaterialTheme.typography.bodyLarge,
-                        modifier = Modifier.padding(16.dp)
+                if (chatModels.isNotEmpty()) {
+                    Surface(color = Color.Transparent) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(headerGradient)
+                        ) {
+                            ScrollableTabRow(
+                                selectedTabIndex = pagerState.currentPage,
+                                edgePadding = 12.dp,
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.primary
+                            ) {
+                                chatModels.forEachIndexed { index, model ->
+                                    Tab(
+                                        selected = pagerState.currentPage == index,
+                                        onClick = {
+                                            coroutineScope.launch { pagerState.animateScrollToPage(index) }
+                                        },
+                                        text = { Text(model.name) }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ) { paddingValues ->
+        if (chatModels.isEmpty()) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("No chat models available.")
+            }
+        } else {
+            val premiumGradient = Brush.verticalGradient(
+                colors = listOf(
+                    MaterialTheme.colorScheme.surface,
+                    MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                )
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .background(premiumGradient)
+            ) {
+                HorizontalPager(
+                    state = pagerState,
+                ) { page ->
+                    val model = chatModels[page]
+                    ModelWebPage(
+                        url = model.url,
+                        onTitleChanged = { /* reserved */ }
                     )
                 }
             }
         }
     }
 }
+
+@Composable
+private fun ModelWebPage(
+    url: String,
+    onTitleChanged: (String) -> Unit
+) {
+    WebViewScreen(
+        url = url,
+        onBackPressed = { /* no-op inside pager */ }
+    )
+}
+
+@Deprecated("Replaced by PremiumSwipeChat")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AndroidAiApp() { /* legacy kept for future */ }
 
 @Composable
 fun CategorySection(
     category: String,
     links: List<com.androidai.browser.data.AiLink>,
     onLinkClick: (String) -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = category,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            
-            links.forEach { aiLink ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onLinkClick(aiLink.url) }
-                        .padding(vertical = 4.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant
-                    )
-                ) {
-                    Row(
-                        modifier = Modifier.padding(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Language,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column {
-                            Text(
-                                text = aiLink.name,
-                                style = MaterialTheme.typography.bodyLarge,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                            Text(
-                                text = aiLink.description,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+) { /* legacy */ }

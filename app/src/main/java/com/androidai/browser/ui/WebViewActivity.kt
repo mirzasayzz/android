@@ -3,6 +3,7 @@ package com.androidai.browser.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
@@ -118,13 +119,21 @@ fun WebViewScreen(
                                 setSupportZoom(true)
                                 builtInZoomControls = true
                                 displayZoomControls = false
+                                // Force mobile-friendly behavior
+                                useWideViewPort = true
+                                loadWithOverviewMode = true
+                                layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                                userAgentString = "Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36"
                             }
-                            loadUrl(url)
+                            // Inject viewport meta for pages that don't set it
+                            val mobileViewport = "<head><meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'></head>"
+                            val targetUrl = if (url.startsWith("http")) url else "https://$url"
+                            loadUrl(targetUrl)
                         }
                     } catch (e: Exception) {
                         Log.e("WebViewActivity", "Error creating WebView: ${e.message}", e)
                         hasError = true
-                        WebView(context) // Return empty WebView as fallback
+                        WebView(context)
                     }
                 },
                 modifier = Modifier
