@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-45:12
-INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-45:12
-INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-45:12
-INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-45:12
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:2:1-44:12
 MERGED from [androidx.databinding:viewbinding:8.1.2] /home/codespace/.gradle/caches/transforms-3/4cac44e0d482fac9ffdcb9bd37f2bfc1/transformed/viewbinding-8.1.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/codespace/.gradle/caches/transforms-3/583712bbb1d8f2910bd829bd0a2a848a/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common:2.7.5] /home/codespace/.gradle/caches/transforms-3/7a28482cc85e61e7585a9da03da1c5b3/transformed/navigation-common-2.7.5/AndroidManifest.xml:17:1-22:12
@@ -130,8 +130,8 @@ ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:11:5-76
 	android:name
 		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:11:22-73
 application
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:13:5-43:19
-INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:13:5-43:19
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:13:5-42:19
+INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml:13:5-42:19
 MERGED from [com.google.android.material:material:1.4.0-beta01] /home/codespace/.gradle/caches/transforms-3/79fd49b92d041468da01fcfc7d25f04d/transformed/material-1.4.0-beta01/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.4.0-beta01] /home/codespace/.gradle/caches/transforms-3/79fd49b92d041468da01fcfc7d25f04d/transformed/material-1.4.0-beta01/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/codespace/.gradle/caches/transforms-3/ddda0af098eab12ee374fc4c0bfe5978/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -159,57 +159,55 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/codes
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] /home/codespace/.gradle/caches/transforms-3/96fa24ce9bad35adf9f5fbf7cca4539b/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:21:9-35
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:20:9-35
 	android:label
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:19:9-41
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:18:9-41
 	android:fullBackupContent
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:17:9-54
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:16:9-54
 	android:roundIcon
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:20:9-54
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:19:9-54
 	tools:targetApi
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:24:9-29
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:23:9-29
 	android:icon
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:18:9-43
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:17:9-43
 	android:allowBackup
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:15:9-35
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:22:9-47
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:21:9-47
 	android:dataExtractionRules
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:16:9-65
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:15:9-65
 	android:usesCleartextTraffic
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:23:9-44
-	android:name
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:14:9-45
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:22:9-44
 activity#com.androidai.browser.ui.MainActivity
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:26:9-35:20
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:25:9-34:20
 	android:label
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:29:13-45
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:28:13-45
 	android:exported
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:28:13-36
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:27:13-36
 	android:theme
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:30:13-51
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:29:13-51
 	android:name
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:27:13-44
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:26:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:31:13-34:29
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:30:13-33:29
 action#android.intent.action.MAIN
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:32:17-69
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:31:17-69
 	android:name
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:32:25-66
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:31:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:33:17-77
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:32:17-77
 	android:name
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:33:27-74
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:32:27-74
 activity#com.androidai.browser.ui.WebViewActivity
-ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:37:9-41:54
+ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:36:9-40:54
 	android:exported
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:39:13-37
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:38:13-37
 	android:configChanges
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:40:13-74
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:39:13-74
 	android:theme
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:41:13-51
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:40:13-51
 	android:name
-		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:38:13-47
+		ADDED from /home/codespace/android/app/src/main/AndroidManifest.xml:37:13-47
 uses-sdk
 INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/codespace/android/app/src/main/AndroidManifest.xml

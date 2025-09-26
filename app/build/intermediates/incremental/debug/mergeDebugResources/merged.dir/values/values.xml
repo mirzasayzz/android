@@ -3978,14 +3978,15 @@
     </style>
     <style name="TextAppearance.Widget.AppCompat.Toolbar.Title" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Title">
     </style>
-    <style name="Theme.AndroidAi" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.AndroidAi" parent="android:Theme.Material.Light.NoActionBar">
         
-        <item name="colorPrimary">#6750A4</item>
-        <item name="colorPrimaryDark">#4F378B</item>
-        <item name="colorAccent">#D0BCFF</item>
+        <item name="android:colorPrimary">#6750A4</item>
         
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" ns1:targetApi="m">true</item>
+        
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
     <style name="Theme.AppCompat" parent="Base.Theme.AppCompat"/>
     <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu"/>

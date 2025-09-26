@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme for dark mode. -->
-    <style name="Theme.AndroidAi" parent="Theme.AppCompat.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#D0BCFF</item>
-        <item name="colorPrimaryDark">#4F378B</item>
-        <item name="colorAccent">#6750A4</item>
+    <!-- Base application theme for dark mode -->
+    <style name="Theme.AndroidAi" parent="android:Theme.Material.NoActionBar">
+        <!-- Primary brand color for dark mode -->
+        <item name="android:colorPrimary">#D0BCFF</item>
         <!-- Status bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <!-- Enable edge-to-edge -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 </resources> 

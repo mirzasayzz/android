@@ -3,6 +3,7 @@ package com.androidai.browser.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -24,10 +25,22 @@ import com.androidai.browser.ui.theme.AndroidAiTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            AndroidAiTheme {
-                AndroidAiApp()
+        
+        try {
+            setContent {
+                AndroidAiTheme {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        AndroidAiApp()
+                    }
+                }
             }
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error in onCreate: ${e.message}", e)
+            // Fallback UI or finish activity
+            finish()
         }
     }
 }
@@ -36,7 +49,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AndroidAiApp() {
     val context = LocalContext.current
-    val aiLinks = remember { AiLinksData.getDefaultLinks() }
+    val aiLinks = remember { 
+        try {
+            AiLinksData.getDefaultLinks()
+        } catch (e: Exception) {
+            Log.e("AndroidAiApp", "Error loading AI links: ${e.message}", e)
+            emptyList()
+        }
+    }
     
     Scaffold(
         topBar = {
@@ -72,17 +92,31 @@ fun AndroidAiApp() {
                 Spacer(modifier = Modifier.height(8.dp))
             }
             
-            items(aiLinks.groupBy { it.category }.toList()) { (category, links) ->
-                CategorySection(
-                    category = category,
-                    links = links,
-                    onLinkClick = { url ->
-                        val intent = Intent(context, WebViewActivity::class.java).apply {
-                            putExtra("url", url)
+            if (aiLinks.isNotEmpty()) {
+                items(aiLinks.groupBy { it.category }.toList()) { (category, links) ->
+                    CategorySection(
+                        category = category,
+                        links = links,
+                        onLinkClick = { url ->
+                            try {
+                                val intent = Intent(context, WebViewActivity::class.java).apply {
+                                    putExtra("url", url)
+                                }
+                                context.startActivity(intent)
+                            } catch (e: Exception) {
+                                Log.e("AndroidAiApp", "Error starting WebViewActivity: ${e.message}", e)
+                            }
                         }
-                        context.startActivity(intent)
-                    }
-                )
+                    )
+                }
+            } else {
+                item {
+                    Text(
+                        text = "No AI tools available. Please check your internet connection.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
             }
         }
     }
