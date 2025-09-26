@@ -2,3 +2,5 @@ android-sdk/
 .gradle/
 build/
 local.properties
+**/build/
+android-ai.apk
