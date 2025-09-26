@@ -85,6 +85,26 @@ fun WebViewScreen(
     val isDark = isSystemInDarkTheme()
     val initialUrl = remember(url) { if (url.startsWith("http")) url else "https://$url" }
     val webViewRef = remember { mutableStateOf<WebView?>(null) }
+    val responsiveJs = """
+        (function(){
+          try {
+            var d = document;
+            var head = d.head || d.getElementsByTagName('head')[0];
+            if (!head) return;
+            var vp = d.querySelector('meta[name="viewport"]');
+            if (!vp) { vp = d.createElement('meta'); vp.name = 'viewport'; head.appendChild(vp); }
+            vp.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+            var s = d.getElementById('android-ai-mobile-css');
+            if (!s) {
+              s = d.createElement('style');
+              s.id = 'android-ai-mobile-css';
+              s.type = 'text/css';
+              s.appendChild(d.createTextNode('html,body{max-width:100vw!important;overflow-x:hidden!important;}*,*:before,*:after{box-sizing:border-box;}img,iframe,video,canvas{max-width:100%!important;height:auto!important;}'));
+              head.appendChild(s);
+            }
+          } catch(e) {}
+        })();
+    """
 
     var filePathCallback by remember { mutableStateOf<ValueCallback<Array<Uri>>?>(null) }
     val fileChooserLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -152,6 +172,9 @@ fun WebViewScreen(
                                         isLoading = false
                                         canGoBack = view?.canGoBack() == true
                                         canGoForward = view?.canGoForward() == true
+                                        try {
+                                            view?.evaluateJavascript(responsiveJs, null)
+                                        } catch (_: Exception) {}
                                     }
 
                                     override fun shouldOverrideUrlLoading(
@@ -261,7 +284,7 @@ fun WebViewScreen(
                                     layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
                                     mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
                                     // Always use a modern mobile user agent
-                                    userAgentString = "Mozilla/5.0 (Linux; Android 11; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36"
+                                    userAgentString = "Mozilla/5.0 (Linux; Android 14; Mobile; rv:122.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36"
                                 }
 
                                 // Force dark if supported
@@ -302,6 +325,8 @@ fun WebViewScreen(
 
                                 // Load initial URL
                                 loadUrl(initialUrl)
+                                // Ensure initial page gets responsive tweaks after first paint
+                                postDelayed({ try { evaluateJavascript(responsiveJs, null) } catch (_: Exception) {} }, 750)
                             }
                         } catch (e: Exception) {
                             Log.e("WebViewActivity", "Error creating WebView: ${e.message}", e)
