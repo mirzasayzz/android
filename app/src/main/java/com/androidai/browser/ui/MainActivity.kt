@@ -51,7 +51,6 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun PremiumSwipeChat() {
-    val context = LocalContext.current
     val chatModels = remember {
         try {
             AiLinksData.getDefaultLinks().filter { it.category == "Chatbots" }
@@ -141,25 +140,15 @@ fun PremiumSwipeChat() {
                     state = pagerState,
                 ) { page ->
                     val model = chatModels[page]
-                    ModelWebPage(
+                    WebViewScreen(
                         url = model.url,
-                        onTitleChanged = { /* reserved */ }
+                        onBackPressed = {},
+                        showTopBar = false
                     )
                 }
             }
         }
     }
-}
-
-@Composable
-private fun ModelWebPage(
-    url: String,
-    onTitleChanged: (String) -> Unit
-) {
-    WebViewScreen(
-        url = url,
-        onBackPressed = { /* no-op inside pager */ }
-    )
 }
 
 @Deprecated("Replaced by PremiumSwipeChat")

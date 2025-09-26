@@ -11,9 +11,9 @@ data class AiLink(
 
 object AiLinksData {
     fun getDefaultLinks(): List<AiLink> = listOf(
-        AiLink("1", "ChatGPT", "OpenAI's conversational AI", "https://chat.openai.com", "Chatbots"),
-        AiLink("2", "Claude", "Anthropic's AI assistant", "https://claude.ai", "Chatbots"),
-        AiLink("3", "Gemini", "Google's multimodal AI", "https://gemini.google.com", "Chatbots"),
+        AiLink("1", "ChatGPT", "OpenAI's conversational AI", "https://chatgpt.com/?model=gpt-4o-mini", "Chatbots"),
+        AiLink("2", "Claude", "Anthropic's AI assistant", "https://claude.ai/new", "Chatbots"),
+        AiLink("3", "Gemini", "Google's multimodal AI", "https://gemini.google.com/app", "Chatbots"),
         AiLink("4", "Perplexity", "AI search engine", "https://www.perplexity.ai", "Chatbots"),
         AiLink("5", "Poe", "Quora's AI platform", "https://poe.com", "Chatbots"),
         AiLink("6", "Jasper", "AI content creation", "https://www.jasper.ai", "Writing"),
