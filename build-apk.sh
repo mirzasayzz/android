@@ -44,11 +44,19 @@ if [ -f "app/build/outputs/apk/debug/app-debug.apk" ]; then
     echo "📱 Ready to install on Android devices!"
     
     # Copy APK to root directory for easy access
-    cp app/build/outputs/apk/debug/app-debug.apk ./android-ai.apk
+    cp -f app/build/outputs/apk/debug/app-debug.apk ./android-ai.apk
     echo "📋 APK copied to: android-ai.apk"
     
     # Show APK info
     ls -lh android-ai.apk
+
+    # Auto-push APK to repo (requested push-everytime)
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        echo "🚀 Pushing android-ai.apk to origin/main..."
+        git add -f android-ai.apk
+        git commit -m "chore: update android-ai.apk (auto-push after build)" || true
+        git push origin main || true
+    fi
 else
     echo "❌ Failed to build APK"
     exit 1

@@ -313,38 +313,6 @@ fun WebViewScreen(
                         .fillMaxSize()
                 )
 
-                // Bottom navigation controls overlay
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
-                    tonalElevation = 1.dp
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 8.dp, vertical = 6.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row {
-                            IconButton(enabled = canGoBack, onClick = { webViewRef.value?.goBack() }) {
-                                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                            }
-                            IconButton(enabled = canGoForward, onClick = { webViewRef.value?.goForward() }) {
-                                Icon(Icons.Filled.ArrowForward, contentDescription = "Forward")
-                            }
-                            IconButton(onClick = { webViewRef.value?.reload() }) {
-                                Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
-                            }
-                        }
-                        Row {
-                            IconButton(onClick = { webViewRef.value?.loadUrl(initialUrl) }) {
-                                Icon(Icons.Filled.Home, contentDescription = "Home")
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -379,6 +347,35 @@ fun WebViewScreen(
                             progress = progress / 100f,
                             modifier = Modifier.fillMaxWidth()
                         )
+                    }
+                }
+            },
+            bottomBar = {
+                Surface(
+                    tonalElevation = 1.dp
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp, vertical = 6.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row {
+                            IconButton(enabled = canGoBack, onClick = { webViewRef.value?.goBack() }) {
+                                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+                            }
+                            IconButton(enabled = canGoForward, onClick = { webViewRef.value?.goForward() }) {
+                                Icon(Icons.Filled.ArrowForward, contentDescription = "Forward")
+                            }
+                            IconButton(onClick = { webViewRef.value?.reload() }) {
+                                Icon(Icons.Filled.Refresh, contentDescription = "Refresh")
+                            }
+                        }
+                        Row {
+                            IconButton(onClick = { webViewRef.value?.loadUrl(initialUrl) }) {
+                                Icon(Icons.Filled.Home, contentDescription = "Home")
+                            }
+                        }
                     }
                 }
             }
